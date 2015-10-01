@@ -211,28 +211,33 @@ Backbone.Validation = (function(_){
     // Contains the methods that are mixed in on the model when binding
     var mixin = function(view, options) {
       return {
+	  
+		// Check whether or not a value, or a hash of values
+		// passes validation without updating the model
+		preValidate: function(attr, value, computed) {
+			console.log("preValidate")
+			var self = this,
+				result = {},
+				error;
 
-        // Check whether or not a value, or a hash of values
-        // passes validation without updating the model
-        preValidate: function(attr, value) {
-          var self = this,
-              result = {},
-              error;
+			if(_.isObject(attr)){
+				computed = computed || _.extend({}, this.attributes, attr);
+				_.each(attr, function(value, key) {
+					error = self.preValidate(key, value, computed);
+					if(error){
+						result[key] = error;
+					}
+				});
 
-          if(_.isObject(attr)){
-            _.each(attr, function(value, key) {
-              error = self.preValidate(key, value);
-              if(error){
-                result[key] = error;
-              }
-            });
-
-            return _.isEmpty(result) ? undefined : result;
-          }
-          else {
-            return validateAttr(this, attr, value, _.extend({}, this.attributes));
-          }
-        },
+				return _.isEmpty(result) ? undefined : result;
+			}
+			else {
+				var attrs = {};
+				attrs[attr] = value;
+				computed = computed || _.extend({}, this.attributes, attrs);
+				return validateAttr(this, attr, value, computed);
+			}
+		}
 
         // Check to see if an attribute, an array of attributes or the
         // entire model is valid. Passing true will force a validation
