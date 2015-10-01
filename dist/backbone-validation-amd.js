@@ -244,7 +244,7 @@
   				computed = computed || _.extend({}, this.attributes, attrs);
   				return validateAttr(this, attr, value, computed);
   			}
-  		}
+  		},
   
           // Check to see if an attribute, an array of attributes or the
           // entire model is valid. Passing true will force a validation
