@@ -222,7 +222,6 @@
   		// Check whether or not a value, or a hash of values
   		// passes validation without updating the model
   		preValidate: function(attr, value, computed) {
-  			console.log("preValidate")
   			var self = this,
   				result = {},
   				error;
