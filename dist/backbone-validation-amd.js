@@ -1,6 +1,6 @@
 // Backbone.Validation v0.11.5
 //
-// Copyright (c) 2011-2015 Thomas Pedersen
+// Copyright (c) 2011-2016 Thomas Pedersen
 // Distributed under MIT License
 //
 // Documentation and full license available at:
@@ -218,7 +218,7 @@
       // Contains the methods that are mixed in on the model when binding
       var mixin = function(view, options) {
         return {
-  	  
+  
   		// Check whether or not a value, or a hash of values
   		// passes validation without updating the model
   		preValidate: function(attr, value, computed) {

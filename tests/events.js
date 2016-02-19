@@ -74,7 +74,7 @@ buster.testCase("Backbone.Validation events", {
             this.model.bind('validated', function(valid, model, attr){
                 refute(valid);
                 assert.same(this.model, model);
-                assert.equals({age:'age', name:'name'}, attr);
+                assert.equals({age:'age'}, attr);
                 done();
             }, this);
 
@@ -84,7 +84,7 @@ buster.testCase("Backbone.Validation events", {
         "validated:invalid event is triggered with model and an object with the names of the attributes with error": function(done) {
             this.model.bind('validated:invalid', function(model, attr){
                 assert.same(this.model, model);
-                assert.equals({age: 'age', name: 'name'}, attr);
+                assert.equals({age: 'age'}, attr);
                 done();
             }, this);
 
@@ -94,38 +94,11 @@ buster.testCase("Backbone.Validation events", {
         "invalid event is triggered with model and an object with the names of the attributes with error": function(done) {
             this.model.bind('invalid', function(model, attr){
                 assert.same(this.model, model);
-                assert.equals({age: 'age', name: 'name'}, attr);
+                assert.equals({age: 'age'}, attr);
                 done();
             }, this);
 
             this.model.set({age:0}, {validate: true});
-        }
-    },
-
-    "when one valid value is set": {
-        "validated event is triggered with false, model and an object with the names of the attributes with error": function(done) {
-            this.model.bind('validated', function(valid, model, attrs){
-                refute(valid);
-                assert.same(this.model, model);
-                assert.equals({name: 'name'}, attrs);
-                done();
-            }, this);
-
-            this.model.set({
-                age: 1
-            }, {validate: true});
-        },
-
-        "validated:invalid event is triggered with model and an object with the names of the attributes with error": function(done) {
-            this.model.bind('validated:invalid', function(model, attrs){
-                assert.same(this.model, model);
-                assert.equals({name: 'name'}, attrs);
-                done();
-            }, this);
-
-            this.model.set({
-                age: 1
-            }, {validate: true});
         }
     }
 });
