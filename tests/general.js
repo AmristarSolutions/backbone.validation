@@ -97,8 +97,8 @@ buster.testCase("Backbone.Validation", {
                     assert.equals(this.model.get('age'), 1);
                 },
 
-                "model should be invalid": function() {
-                    refute(this.model.isValid());
+                "model should be valid": function() {
+                    assert(this.model.isValid());
                 }
             },
 
@@ -230,7 +230,7 @@ buster.testCase("Backbone.Validation", {
                 this.model.set({
                     age: 1
                 }, {validate: true});
-                refute(this.model.isValid());
+                assert(this.model.isValid());
 
                 this.model.set({
                     name: 'hello'

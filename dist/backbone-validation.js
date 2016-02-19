@@ -1,6 +1,6 @@
 // Backbone.Validation v0.11.5
 //
-// Copyright (c) 2011-2015 Thomas Pedersen
+// Copyright (c) 2011-2016 Thomas Pedersen
 // Distributed under MIT License
 //
 // Documentation and full license available at:
@@ -211,7 +211,7 @@ Backbone.Validation = (function(_){
     // Contains the methods that are mixed in on the model when binding
     var mixin = function(view, options) {
       return {
-	  
+
 		// Check whether or not a value, or a hash of values
 		// passes validation without updating the model
 		preValidate: function(attr, value, computed) {
@@ -286,9 +286,8 @@ Backbone.Validation = (function(_){
               opt = _.extend({}, options, setOptions),
               validatedAttrs = getValidatedAttrs(model, getOptionsAttrs(options, view)),
               allAttrs = _.extend({}, validatedAttrs, model.attributes, attrs),
-              flattened = flatten(allAttrs),
-              changedAttrs = attrs ? flatten(attrs) : flattened,
-              result = validateModel(model, allAttrs, _.pick(flattened, _.keys(validatedAttrs)));
+              changedAttrs = attrs ? flatten(attrs) : flatten(allAttrs),
+              result = validateModel(model, allAttrs, _.pick(changedAttrs, _.keys(validatedAttrs)));
 
           model._isValid = result.isValid;
 
